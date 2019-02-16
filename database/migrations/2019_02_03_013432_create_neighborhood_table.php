@@ -15,10 +15,10 @@ class CreateNeighborhoodTable extends Migration
     {
         Schema::create('neighborhood', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
-            $table->integer('id_location')->unsigned();
+            $table->string('barrio');
+            $table->integer('id_localidad')->unsigned();
             $table->timestamps();
-            $table->foreign('id_location')->references('id')->on('location');
+            $table->foreign('id_localidad')->references('id')->on('location');
 
         });
     }

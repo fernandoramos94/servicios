@@ -16,6 +16,16 @@ class CreateShopTable extends Migration
         Schema::create('shop', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
+            $table->string('empresa');
+            $table->string('nit');
+            $table->string('direccion');
+            $table->string('telefono');
+            $table->string('nombre');
+            $table->string('celular');
+            $table->text('descripcion');
+            $table->string('correo');
+            $table->string('redes_sociales');
+            
         });
     }
 
