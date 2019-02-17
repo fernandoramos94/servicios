@@ -10,6 +10,7 @@ use Validator;
 
 class AuthController extends Controller
 {
+    public $successStatus = 200;
     //
     public function register(Request $request)
     {
@@ -28,8 +29,9 @@ class AuthController extends Controller
 
         $input = $request->all();
         $input['password'] = bcrypt($request->get('password'));
+        $input['rol'] = 2;
         $user = User::create($input);
-        $token =  $user->createToken('MyApp')->accessToken;
+        $token =  $user->createToken('mdExpress')->accessToken;
 
         return response()->json([
             'token' => $token,
@@ -38,15 +40,17 @@ class AuthController extends Controller
     }
     public function login(Request $request)
     {
-        if (Auth::attempt($request->only('email', 'password'))) {
+        if(Auth::attempt(['email' => request('email'), 'password' => request('password')])){
             $user = Auth::user();
-            $token =  $user->createToken('MyApp')->accessToken;
+            $token =  $user->createToken('mdExpress')->accessToken;
+
             return response()->json([
                 'token' => $token,
                 'user' => $user
             ], 200);
-        } else {
-            return response()->json(['error' => 'Unauthorised'], 401);
+        }
+        else{
+            return response()->json(['error'=>'Unauthorised'], 401);
         }
     }
 }

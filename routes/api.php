@@ -16,5 +16,11 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
-Route::post('register', 'Api\AuthController@register');
-Route::post('login', 'Api\AuthController@login');
+Route::middleware(['cors'])->group(function () {
+    Route::post('register', 'Api\AuthController@register');
+    Route::post('login', 'Api\AuthController@login');
+    Route::get('barrios', 'Api\ServicesController@getBarrios');
+    Route::get('categorias', 'Api\ServicesController@getCategorias');
+    Route::get('clientes/{idBarrio}/{idCategoria}', 'Api\ServicesController@getClientes');
+    Route::get('clientes', 'Api\ServicesController@getClientesAll');
+});
