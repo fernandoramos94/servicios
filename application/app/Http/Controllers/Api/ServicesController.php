@@ -33,6 +33,9 @@ class ServicesController extends Controller
     {
         $barrios = DB::table('shop')
         ->join('shop_img', 'shop.id', '=', "shop_img.id_shop")
+        ->join('shop_categorie', 'shop.id', '=', "shop_categorie.id_shop")
+        ->join('categorie', 'shop_categorie.id_categorie', '=', "categorie.id")
+        // ->select()
         ->get();
         return response()->json($barrios);
     }
