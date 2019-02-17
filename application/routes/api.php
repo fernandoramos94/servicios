@@ -18,7 +18,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 Route::middleware(['cors'])->group(function () {
     Route::post('register', 'Api\AuthController@register');
-    Route::get('login/{email}/{password}', 'Api\AuthController@login')->middleware("cors");
+    // Route::post('login', 'Api\AuthController@login')->middleware("cors");
+    Route::get('login/{email}/{password}', 'Api\AuthController@login');
     Route::get('barrios', 'Api\ServicesController@getBarrios');
     Route::get('categorias', 'Api\ServicesController@getCategorias');
     Route::get('clientes/{idBarrio}/{idCategoria}', 'Api\ServicesController@getClientes');
