@@ -39,4 +39,12 @@ class ServicesController extends Controller
         ->get();
         return response()->json($barrios);
     }
+    public function getByClient($id)
+    {
+        $byCliente = DB::table("shop")
+        ->where("id", "=", $id)
+        ->first();
+
+        return response()->json($byCliente);
+    }
 }

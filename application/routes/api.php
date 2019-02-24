@@ -24,6 +24,7 @@ Route::middleware(['cors'])->group(function () {
     Route::get('categorias', 'Api\ServicesController@getCategorias');
     Route::get('clientes/{idBarrio}/{idCategoria}', 'Api\ServicesController@getClientes');
     Route::get('clientes', 'Api\ServicesController@getClientesAll');
+    Route::get('byCliente/{id}', 'Api\ServicesController@getByClient');
 });
 
 // Route::post('login', 'Api\AuthController@login')->middleware("cors");
