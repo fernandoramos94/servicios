@@ -74,7 +74,7 @@ class ServicesController extends Controller
             'shop_img.url_imagen as url_imagen',
             'shop_img.url_logo as url_logo'
         )
-        ->where('shop.id', "=" $id)
+        ->where('shop.id', "=", $id)
         ->first();
 
         return response()->json($byCliente);
